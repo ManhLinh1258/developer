@@ -1,21 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+// import { generateMessage } from "../helpers/generateMessage";
 
-function GeneratedQuest() {
+function GeneratedQuest({ promt }: { promt: string }) {
+  const [result, setResult] = useState("");
+
+  useEffect(() => {
+    const getMessage = async () => {
+      // const mess = await generateMessage(promt)
+      // setResult(mess)
+    };
+    getMessage();
+  }, [promt]);
   return (
     <div>
       <div className="text-white text-xl mt ">
         Generated Quest
         <div className="mt-4 m border-b-2 w-full border-[#0000FF] shadow-none rounded-none "></div>
       </div>
-      <input className="bg-gray-500 text-white p-2 flex-auto rounded-md w-full my-4 mr-3"></input>
-      <input className="bg-gray-500 text-white p-2 flex-auto rounded-md w-full my-4 mr-3"></input>
       <textarea
         className="bg-gray-700 text-white p-2 rounded-md w-full my-4"
-        rows={4}
-      ></textarea>
-      <textarea
-        className="bg-gray-700 text-white p-2 rounded-md w-full my-4"
-        rows={4}
+        value={result}
       ></textarea>
       <div></div>
     </div>

@@ -1,8 +1,8 @@
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes } from "react";
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   text: string;
-};
+}
 
 const Button: React.FC<ButtonProps> = ({ text, className: cn, ...rest }) => {
   return (
