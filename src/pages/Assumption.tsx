@@ -66,7 +66,7 @@ function Assumption({
           onClick={onAddAssumption}
           className="flex-auto h-[40px] bg-blue-500 items-center text-white  gap-2 px-2 py-1 rounded-md"
         >
-          <HiPlusCircle />
+          <HiPlusCircle className="text-green-500" />
         </button>
       </div>
       <div className="flex flex-col gap-2">

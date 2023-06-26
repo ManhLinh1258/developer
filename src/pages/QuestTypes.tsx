@@ -2,6 +2,7 @@ import { useState } from "react";
 import QuestType from "../components/QuestType";
 import UpsertQuestType from "../components/UpsertQuestType";
 import { TQuestTypeItem } from "../interfaces/TQuestTypeItem";
+import { HiPlusCircle } from "react-icons/hi";
 
 function QuestTypes({
   setQuestTypes,
@@ -11,6 +12,8 @@ function QuestTypes({
   questTypes: TQuestTypeItem[];
 }) {
   const [isAdding, setIsAdding] = useState(false);
+  console.log("questTypes:::", questTypes);
+
   return (
     <div>
       <div className="text-white text-xl">
@@ -21,16 +24,16 @@ function QuestTypes({
         className="bg-blue-500 text-white w-full items-center gap-2 px-4 py-2 rounded-md"
         onClick={() => setIsAdding(true)}
       >
-        <span>
-          {/* <HiPlusCircle className="items-center" />  */}
-          Add New Quest Types
-        </span>
+        <span>Add New Quest Types</span>
       </button>
       {isAdding && (
         <UpsertQuestType
           mode="add"
           onClose={() => setIsAdding(false)}
-          onFinish={(values) => setQuestTypes((val) => [...val, values])}
+          onFinish={(values) => {
+            console.log("value", values, questTypes);
+            setQuestTypes((val) => [...val, values]);
+          }}
         />
       )}
       <div>

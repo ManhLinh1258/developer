@@ -1,15 +1,22 @@
 import React, { HTMLAttributes } from "react";
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
-  text: string;
+  text?: string;
+  icon?: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({ text, className: cn, ...rest }) => {
+const Button: React.FC<ButtonProps> = ({
+  text,
+  icon,
+  className: cn,
+  ...rest
+}) => {
   return (
     <button
-      className={`bg-blue-500 text-white flex items-center gap-2 px-4 py-2 rounded-md ${cn}`}
+      className={`bg-blue-500 text-white flex items-center gap-2 px-2 py-2 rounded-md ${cn}`}
       {...rest}
     >
+      {icon && <span>{icon}</span>}
       <span>{text}</span>
     </button>
   );

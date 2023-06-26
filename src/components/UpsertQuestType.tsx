@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DefinitionItem, TQuestTypeItem } from "../interfaces/TQuestTypeItem";
 import Input from "./Input";
 import Button from "./button";
+import { HiOutlineTrash } from "react-icons/hi";
 
 interface IUpsertQuestTypeProps {
   mode: "update" | "add";
@@ -20,6 +21,12 @@ export default function UpsertQuestType({
     description: "",
     data: [],
   });
+  useEffect(() => {
+    if (mode === "update" && Object.entries(data).length > 0) {
+      setValues(data);
+    }
+  }, []);
+
   return (
     <div className="text-white">
       <div className="flex items-center gap-3">
@@ -50,22 +57,32 @@ export default function UpsertQuestType({
               data: [
                 ...values.data,
                 {
-                  type: "number",
-                  desc: "string",
-                  label: "string",
+                  type: "",
+                  desc: "",
+                  label: "",
                 },
               ],
             })
           }
         />
         <div>
-          {mode === "update"
+          {/* {mode === "update"
             ? data?.data.map((item, index) => (
-                <DefinitionItem key={index + "a"} item={item} />
+                <DefinitionItem
+                  key={index + "a"}
+                  item={item}
+                  index={index}
+                  setValues={setValues}
+                />
               ))
-            : null}
+            : null} */}
           {values.data.map((item, index) => (
-            <DefinitionItem key={index + "b"} item={item} />
+            <DefinitionItem
+              key={index + "b"}
+              index={index}
+              setValues={setValues}
+              item={item}
+            />
           ))}
         </div>
       </div>
@@ -83,17 +100,74 @@ export default function UpsertQuestType({
   );
 }
 
-const DefinitionItem = ({ item }: { item: DefinitionItem }) => {
+const DefinitionItem = ({
+  item,
+  index,
+  setValues,
+}: {
+  item: DefinitionItem;
+  index: number;
+  setValue: TQuestTypeItem;
+}) => {
+  const handleChangeDefinition = (e: any, index: number) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setValues((prevValues: any) => {
+      const copyDatas = JSON.parse(JSON.stringify(prevValues.data));
+      const newDatas = copyDatas.reduce(
+        (prevData: any, curData: any, indexCopy: any) => {
+          const newData =
+            index === indexCopy ? { ...curData, [name]: value } : curData;
+          return [...prevData, newData];
+        },
+        []
+      );
+      return {
+        ...prevValues,
+        data: newDatas,
+      };
+    });
+  };
+
+  const handleRemove = (index: number) => {
+    setValues((prevValues: any) => {
+      const copyDatas = JSON.parse(JSON.stringify(prevValues.data));
+      const newDatas = copyDatas.filter((d, indexData) => index !== indexData);
+
+      return {
+        ...prevValues,
+        data: newDatas,
+      };
+    });
+  };
   return (
     <div className="flex items-center gap-2">
-      <Input />
-      <select className="bg-gray-500 text-white rounded-md">
+      <Input
+        value={item.label}
+        name="label"
+        onChange={(e) => handleChangeDefinition(e, index)}
+      />
+      <select
+        value={item.type}
+        name="type"
+        className="bg-gray-500 text-white rounded-md"
+        onChange={(e) => handleChangeDefinition(e, index)}
+      >
         <option value="string">String</option>
         <option value="number">Number</option>
         <option value="boolean">Boolean</option>
       </select>
-      <textarea className="bg-gray-500 text-white flex-auto rounded-md w-full my-4 " />
-      <Button text="del" />
+      <textarea
+        value={item.desc}
+        onChange={(e) => handleChangeDefinition(e, index)}
+        name="desc"
+        className="bg-gray-500 text-white flex-auto rounded-md w-full my-4 "
+      />
+      <Button
+        icon={<HiOutlineTrash className="text-red-500" />}
+        onClick={() => handleRemove(index)}
+      />
     </div>
   );
 };
