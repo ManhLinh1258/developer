@@ -19,7 +19,7 @@ export default function Input({
 
   return (
     <input
-      className={`bg-gray-500 text-white p-2 flex-auto rounded-md w-full my-4 mr-3 ${cn}`}
+      className={`bg-gray-500 text-white p-2 flex-auto rounded-md w-full  ${cn}`}
       value={value}
       name={name}
       onChange={handleChange}

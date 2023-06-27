@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { DefinitionItem, TQuestTypeItem } from "../interfaces/TQuestTypeItem";
 import Input from "./Input";
 import Button from "./button";
-import { HiOutlineTrash } from "react-icons/hi";
+import { HiOutlineTrash, HiPencil } from "react-icons/hi";
 
 interface IUpsertQuestTypeProps {
   mode: "update" | "add";
@@ -31,16 +31,16 @@ export default function UpsertQuestType({
   return (
     <div className="text-white">
       <div className="flex items-center gap-3">
-        <label>TypeId: </label>
+        <label className="w-[90px]">TypeId: </label>
         <Input
           defaultValue={mode === "update" ? data?.id : ""}
           onChange={(e) => setValues({ ...values, id: e.currentTarget.value })}
         />
       </div>
-      <div className="flex items-center gap-3">
-        <label>Description: {mode === "update" ? data?.description : ""}</label>
+      <div className="flex items-center gap-3 my-3">
+        <label>Description: </label>
         <textarea
-          className="bg-gray-500 p-2 flex-auto rounded-md w-full my-4 mr-3"
+          className="bg-gray-500 p-2 flex-auto rounded-md w-full my-4 "
           defaultValue={mode === "update" ? data?.description : ""}
           onChange={(e) =>
             setValues({ ...values, description: e.currentTarget.value })
@@ -89,6 +89,7 @@ export default function UpsertQuestType({
       </div>
       <div>
         <Button
+          icon={<HiPencil />}
           className="my-2"
           text="Done"
           onClick={() => {
@@ -145,8 +146,9 @@ const DefinitionItem = ({
     });
   };
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex  gap-2">
       <Input
+        className="h-[25px]"
         value={item.label}
         name="label"
         onChange={(e) => handleChangeDefinition(e, index)}
@@ -154,7 +156,7 @@ const DefinitionItem = ({
       <select
         value={item.type}
         name="type"
-        className="bg-gray-500 text-white rounded-md"
+        className="bg-gray-500 h-[25px] text-white rounded-md"
         onChange={(e) => handleChangeDefinition(e, index)}
       >
         <option value="string">String</option>
@@ -165,9 +167,10 @@ const DefinitionItem = ({
         value={item.desc}
         onChange={(e) => handleChangeDefinition(e, index)}
         name="desc"
-        className="bg-gray-500 text-white flex-auto rounded-md w-full my-4 "
+        className="bg-gray-500 text-white  rounded-md w-full  "
       />
       <Button
+        className="h-[25px]"
         icon={<HiOutlineTrash className="text-red-500" />}
         onClick={() => handleRemove(index)}
       />

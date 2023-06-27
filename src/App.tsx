@@ -16,7 +16,7 @@ function App() {
         {
           label: "amout",
           type: "number",
-          desc: "fdsfd",
+          desc: "amout 1",
         },
       ],
     },
