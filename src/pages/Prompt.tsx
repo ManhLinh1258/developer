@@ -6,7 +6,7 @@ function Prompt({ promt }: { promt: string }) {
         <div className="mt-4 m border-b-2 w-full border-[#0000FF] shadow-none rounded-none "></div>
       </div>
       <textarea
-        rows={10}
+        rows={20}
         className="bg-gray-500 text-white p-2 rounded-md w-full my-4"
         value={promt}
       ></textarea>

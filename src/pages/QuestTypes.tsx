@@ -12,7 +12,6 @@ function QuestTypes({
   questTypes: TQuestTypeItem[];
 }) {
   const [isAdding, setIsAdding] = useState(false);
-  console.log("questTypes:::", questTypes);
 
   return (
     <div>
@@ -31,7 +30,6 @@ function QuestTypes({
           mode="add"
           onClose={() => setIsAdding(false)}
           onFinish={(values) => {
-            console.log("value", values, questTypes);
             setQuestTypes((val) => [...val, values]);
           }}
         />

@@ -7,5 +7,5 @@ export interface DefinitionItem {
 export type TQuestTypeItem = {
     id: string;
     description: string;
-    data: Array<DefinitionItem>
+    data: DefinitionItem[];
 }

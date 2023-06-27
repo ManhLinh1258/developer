@@ -22,8 +22,9 @@ export default function UpsertQuestType({
     data: [],
   });
   useEffect(() => {
-    if (mode === "update" && Object.entries(data).length > 0) {
-      setValues(data);
+    if (mode === "update" && Object.entries(data as any).length > 0) {
+      const typedData: TQuestTypeItem = data as TQuestTypeItem;
+      setValues(typedData);
     }
   }, []);
 
@@ -107,7 +108,7 @@ const DefinitionItem = ({
 }: {
   item: DefinitionItem;
   index: number;
-  setValue: TQuestTypeItem;
+  setValues: React.Dispatch<React.SetStateAction<TQuestTypeItem>>;
 }) => {
   const handleChangeDefinition = (e: any, index: number) => {
     const name = e.target.name;
@@ -133,7 +134,9 @@ const DefinitionItem = ({
   const handleRemove = (index: number) => {
     setValues((prevValues: any) => {
       const copyDatas = JSON.parse(JSON.stringify(prevValues.data));
-      const newDatas = copyDatas.filter((d, indexData) => index !== indexData);
+      const newDatas = copyDatas.filter(
+        (d: any, indexData: any) => index !== indexData
+      );
 
       return {
         ...prevValues,
