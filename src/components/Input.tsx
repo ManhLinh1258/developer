@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ChangeEvent } from "react";
+import { HTMLAttributes, ChangeEvent } from "react";
 
 interface InputProps extends HTMLAttributes<HTMLInputElement> {
   value?: string;

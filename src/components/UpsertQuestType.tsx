@@ -30,7 +30,7 @@ export default function UpsertQuestType({
 
   return (
     <div className="text-white">
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 my-4">
         <label className="w-[90px]">TypeId: </label>
         <Input
           defaultValue={mode === "update" ? data?.id : ""}
@@ -40,7 +40,7 @@ export default function UpsertQuestType({
       <div className="flex items-center gap-3 my-3">
         <label>Description: </label>
         <textarea
-          className="bg-gray-500 p-2 flex-auto rounded-md w-full my-4 "
+          className="bg-gray-500 p-2 flex-auto rounded-md w-full my-3 "
           defaultValue={mode === "update" ? data?.description : ""}
           onChange={(e) =>
             setValues({ ...values, description: e.currentTarget.value })
@@ -135,9 +135,10 @@ const DefinitionItem = ({
   const handleRemove = (index: number) => {
     setValues((prevValues: any) => {
       const copyDatas = JSON.parse(JSON.stringify(prevValues.data));
-      const newDatas = copyDatas.filter(
-        (d: any, indexData: any) => index !== indexData
-      );
+      const newDatas = copyDatas.filter((d: any, indexData: any) => {
+        console.log(d);
+        return index !== indexData;
+      });
 
       return {
         ...prevValues,
@@ -146,7 +147,7 @@ const DefinitionItem = ({
     });
   };
   return (
-    <div className="flex  gap-2">
+    <div className="flex mb-2 gap-2">
       <Input
         className="h-[25px]"
         value={item.label}

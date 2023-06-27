@@ -7,7 +7,7 @@ import { ChatOpenAI } from "langchain/chat_models/openai";
 const modelForFunctionCalling = new ChatOpenAI({
   modelName: "gpt-3.5-turbo",
   temperature: 0,
-  openAIApiKey: "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"
+  openAIApiKey: "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"
 });
 
 export const generateMessage = (prompt: string) => {
@@ -25,7 +25,7 @@ export const generateMessage = (prompt: string) => {
 // const modelForFunctionCalling = new ChatOpenAI({
 //   modelName: "gpt-3.5-turbo",
 //   temperature: 0,
-//   openAIApiKey: "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"
+//   openAIApiKey: "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"
 // });
 
 // const promptSchema = z.string();

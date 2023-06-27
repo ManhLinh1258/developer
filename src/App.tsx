@@ -5,13 +5,13 @@ import Prompt from "./pages/Prompt";
 import QuestTypes from "./pages/QuestTypes";
 import { TQuestTypeItem } from "./interfaces/TQuestTypeItem";
 import { TAssumptionItem } from "./interfaces/TAssumptionItem";
-import { generateMessage } from "./helpers/generateMessage";
+// import { generateMessage } from "./helpers/generateMessage";
 
 function App() {
   const [questTypes, setQuestTypes] = useState<TQuestTypeItem[]>([
     {
       id: "receive_money",
-      description: "abczysdsofjd",
+      description: "money to Viet Nam",
       data: [
         {
           label: "amout",

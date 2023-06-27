@@ -2,7 +2,6 @@ import { useState } from "react";
 import QuestType from "../components/QuestType";
 import UpsertQuestType from "../components/UpsertQuestType";
 import { TQuestTypeItem } from "../interfaces/TQuestTypeItem";
-import { HiPlusCircle } from "react-icons/hi";
 
 function QuestTypes({
   setQuestTypes,
